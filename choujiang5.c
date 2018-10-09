@@ -4,6 +4,7 @@
 #include <time.h>
 #include <string.h>
 #include <ctype.h>
+#include "./random.c"
 
 typedef struct info{
 	char jiang[2];
@@ -36,9 +37,10 @@ int main()
 	Info student[N];
 	init(student);
 	inputtext(student);
+	hprintf();
 	while(flag!=0)
 	{
-	printf("enter 1 :join in the choujiang  enter 2 : delet someone'S introuduction    enter 3 : begin to choujiang   enter 4: historical query  enter 0 :exit\n");
+	printf("输入1 : 加入抽奖\n输入2 : 删除个人信息\n输入3 : 开始抽奖\n输入4 : 历史查询\n输入0 : 退出\n");
 	
 //	hprintf();
 //	inputtext(fp,student);
@@ -93,11 +95,8 @@ void init(Info student[])
 
 void hprintf()
 {
-	printf("welcome to this");
-
-
-
-
+	printf("                       抽奖小活动\n");
+	printf("    为丰富现代大学生的大学生活，XX公司特举办抽奖活动，让大\n学生广泛投入社交活动中。其中奖品费用由本公司承担，奖项分为\n一等奖一名，奖品为苹果手机;二等奖两名，奖品为收音机;三等奖\n三名，奖品为保温杯;谢谢参与若干。欢迎各位同学踊跃参加，请按\n下列提示参与抽奖。\n\n");
 }
 
 
@@ -132,25 +131,25 @@ void inputnew(Info student[])
 	int flag,number=0;
 	while(flag!=0)
 	{
-		printf("enter 1: please enter your information ");
-		printf("enter 0: drop out ");
+		printf("输入1: 请完善你的个人信息\n");
+		printf("输入0: 退出\n");
 		scanf("%d",&flag);
 		if(flag==1)
 		{
 		//	s=student(number);
 			number=shuzunumber;
-			printf("please input your name : ");
+			printf("请输入你的姓名 : ");
 			scanf("%s",&student[number].name);
-			printf("please input your ID : ");
+			printf("请输入你的学号 : ");
 			scanf("%s",&student[number].ID);
-			printf("please input your gender : ");
+			printf("请输入你的性别 : ");
 			scanf("%s",&student[number].gender);
-			printf("please input your grade : ");
+			printf("请输入你的年级 : ");
                         scanf("%s",&student[number].grade);
-			printf("please input your introduction : ");
+			printf("请输入你的个人简介 : ");
                         scanf("%s",&student[number].introduction);
 			shuzunumber+=1;
-			printf("%d",shuzunumber);
+			printf("参与者%d :",shuzunumber+1);
 		}
 		
 		if(flag==0)return ;
@@ -182,27 +181,27 @@ void histroicalquery(Info student[])
 
 	while(n!=0)
 	{
-		printf("enter 1: information statisstics enter 2: information inquery  enter 3: clear  enter 0: exit  ");
+		printf("输入1 : 信息统计\n输入2 : 信息查询\n输入3 : 信息清除\n输入0 : 退出\n");
 		scanf("%d",&n);
 		if(n==0)return;
 		if(n==1)
 		{
-			printf("there are %d people get the first prize.  there are %d people get the second prize. there are %d people get third prize\n",x,y,z);
+			printf("这里有%d个人获得了一等奖\n这里有%d个人获得了二等奖\n这里有%d个人获得了三等奖\n",x,y,z);
 		}
 		if(n==2)
 		{
-			printf("the first winner : \n");
+			printf("一等奖 : ");
 			if(x!=0) for(i=0;i<x;i++)show(student[b[i]]);
-			else printf("nobody");
+			else printf("  nobody");
 			printf("\n");
-			printf("the second winner : \n");
+			printf("二等奖 : ");
                         if(y!=0) for(i=0;i<y;i++)show(student[c[i]]);
-			else printf("nobody");
+			else printf("  nobody");
 			printf("\n");
-			printf("the third winner : \n");
+			printf("三等奖 : ");
                         if(z!=0)for(i=0;i<z;i++)show(student[d[i]]);
-			else printf("nobody");
-			printf("\n");	
+			else printf("  nobody");
+			printf("\n");
 	}
 		if(n==3)
 		{
@@ -210,12 +209,6 @@ void histroicalquery(Info student[])
 			for(i=0;i<y;i++){student[c[i]].jiang[0]='3';y=0;}
 			for(i=0;i<z;i++){student[d[i]].jiang[0]='3';z=0;}
 		}
-
-
-	}		
-
-
-
 
 
 	}		
@@ -231,7 +224,7 @@ void deletstudent(Info student[])
 	int flag=1,i=0,n=0;
 	while(flag!=0)
 	{
-		printf("enter 1: to detel   enter 2: view number  enter 0: exit    ");
+		printf("输入1 : 删除信息\n输入2 : 查看所有信息\n输入0 : 退出\n");
 		scanf("%d",&flag);
 		if(flag==0)break;
 		if(flag==1)
@@ -245,7 +238,7 @@ void deletstudent(Info student[])
 				i++;
               		 }
 		printf("\n");
-		printf("which do you want to delet. please enter it's number :");
+		printf("请输入你想删除的信息对应号码 :");
 		scanf("%d",&n);
 		delet(student,n);	
 		}
@@ -293,13 +286,13 @@ void choujiang(Info student[])
 	
 	while(flag!=0)
 	{
-		printf("enter 1: begin  enter 0: exit      ");
+		printf("输入1 : 开始\n输入0 : 退出\n");
 		scanf("%d",&flag);
 		if(flag==1)
 		{
 			while(flags!=0)
 			{
-				printf("enter 1: a person take part in the game   enter 2 :many people take part in the game  enter 0 : exit   ");
+				printf("输入1 : 一人参与\n输入2 ：多人参与\n输入0 : 退出\n");
 				scanf("%d",&flags);
 				Randomize();
 				if(flags==1)
@@ -307,22 +300,21 @@ void choujiang(Info student[])
 				//	Randomize();
 					nb=RandomInteger(0,4);
 					student[shuzunumber-1].jiang[0]=zhuanhuan(nb);
-					printf("the result is :   ");
+					printf("结果是 : ");
 					showprize(nb);
-					printf("winner's controduction :");
+					printf("  中奖者个人信息是 : ");
 				//	printf("%d",shuzunumber);
 					show(student[shuzunumber-1]);
 					printf("\n");
 				}
 				if(flags==2)
 				{
-					printf("now there are %d people in the menu\n",shuzunumber);
-					printf("how mang people take part in game : ");
+					printf("这里有%d个人在抽奖名单中\n",shuzunumber);
+					printf("多少人加入抽奖 : ");
 					scanf("%d",&c);
 					Randomize();
 					for(i=0;i<c;i++)
-					{
-						
+					{		
 						b=RandomInteger(0,shuzunumber-1);
 						if(i==0)a[i]=b;
 						else
@@ -335,7 +327,7 @@ void choujiang(Info student[])
 					}
 					for(j=0;j<c;j++)
 					{
-						printf("%d ",shuzunumber);
+						//printf("%d ",shuzunumber);
 						if(j<=2){showprize(j);show(student[a[j]]);printf("\n");student[a[j]].jiang[0]=zhuanhuan(j);}
 						else {showprize(2);show(student[a[j]]);printf("\n");}
 					}	
@@ -351,20 +343,20 @@ void choujiang(Info student[])
 
 void show(Info student)
 {
-	printf("name: %-10s",student.name);
-	printf("ID : %-20s ",student.ID);
-        printf("gender : %-10s ",student.gender);
-        printf("grade : %-10s ",student.grade);
-        printf("introduction : %s ",student.introduction);
+	printf("  姓名 : %-10s",student.name);
+	printf("学号 : %-20s ",student.ID);
+        printf("性别 : %-10s ",student.gender);
+        printf("年级 : %-10s ",student.grade);
+        printf("个人简介 : %s ",student.introduction);
 }
 
 
 void showprize(int n)
 {
-	if(n==0)printf("first prize winner:get a mobile phone ");
-	else if(n==1)printf("second prize winner :get a video recorder");
-	else if(n==2)printf("third prize winner :get a bottle of water ");
-	else printf("thanks for participating  ");
+	if(n==0)printf("第一名 : 苹果手机");
+	else if(n==1)printf("第二名 : 收音机");
+	else if(n==2)printf("第三名 : 保温杯");
+	else printf("谢谢参与");
 }
 
 
