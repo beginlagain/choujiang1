@@ -103,10 +103,10 @@ void hprintf()
 
 void inputtext(Info student[])
 {
-	//读取文件并放入info[]中
+
 }
 
-//录入个人信息
+
 void inputnew(Info student[])
 {	
 	int flag,number=0;
@@ -139,13 +139,13 @@ void inputnew(Info student[])
 
 }
 
-//历史信息查询
+
 void histroicalquery(Info student[])
 {
-	
+		
 }
 
-//删除学生信息
+
 void deletstudent(Info student[])
 {
 	int flag=1,i=0,n=0;
@@ -206,12 +206,104 @@ void delet(Info student[], int n)
 
 
 
-//开始抽奖
+
 void choujiang(Info student[])
 {
-	//单人抽奖为人选奖品
-	//多人抽奖为奖品选人
+	int flag=1,nb,flags=1,sb,a[50],i,b,j,c;
+	
+	while(flag!=0)
+	{
+		printf("enter 1: begin  enter 0: exit      ");
+		scanf("%d",&flag);
+		if(flag==1)
+		{
+			while(flags!=0)
+			{
+				printf("enter 1: a person take part in the game   enter 2 :many people take part in the game  enter 0 : exit   ");
+				scanf("%d",&flags);
+				Randomize();
+				if(flags==1)
+				{
+				//	Randomize();
+					nb=RandomInteger(0,4);
+					student[shuzunumber-1].jiang[0]=zhuanhuan(nb);
+					printf("the result is :   ");
+					showprize(nb);
+					printf("winner's controduction :");
+				//	printf("%d",shuzunumber);
+					show(student[shuzunumber-1]);
+					printf("\n");
+				}
+				if(flags==2)
+				{
+					printf("now there are %d people in the menu\n",shuzunumber);
+					printf("how mang people take part in game : ");
+					scanf("%d",&c);
+					Randomize();
+					for(i=0;i<c;i++)
+					{
+						
+						b=RandomInteger(0,shuzunumber-1);
+						if(i==0)a[i]=b;
+						else
+						{
+							for(j=0;j<i;j++)
+							{
+								if(b==a[j]){i--;break;}																																				}
+							if(j==i)a[i]=b;
+						}
+					}
+					for(j=0;j<c;j++)
+					{
+						printf("%d ",shuzunumber);
+						if(j<=2){showprize(j);show(student[a[j]]);printf("\n");student[a[j]].jiang[0]=zhuanhuan(j);}
+						else {showprize(2);show(student[a[j]]);printf("\n");}
+					}	
+				}
+			}
+		}			
+			if(flag==0)break;
+		}
 	}
+
+
+
+
+void show(Info student)
+{
+	printf("name: %-10s",student.name);
+	printf("ID : %-20s ",student.ID);
+        printf("gender : %-10s ",student.gender);
+        printf("grade : %-10s ",student.grade);
+        printf("introduction : %s ",student.introduction);
+}
+
+
+void showprize(int n)
+{
+	if(n==0)printf("first prize winner:get a mobile phone ");
+	else if(n==1)printf("second prize winner :get a video recorder");
+	else if(n==2)printf("third prize winner :get a bottle of water ");
+	else printf("thanks for participating  ");
+}
+
+
+char zhuanhuan(int n)
+{
+	char a;
+	switch(n)
+	{
+		case 0:a='0';break;
+		case 1:a='1';break;
+		case 2:a='2';break;
+		default:a='3';break;
+	}
+	return a;
+}
+
+
+ 
+
 
 
 
