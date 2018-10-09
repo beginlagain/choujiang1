@@ -103,7 +103,27 @@ void hprintf()
 
 void inputtext(Info student[])
 {
-
+	int j=0,i=1,k=0,m=0;
+	
+	FILE *fp;
+	char ch;
+	fp=fopen("output.txt","r");
+	if(fp==NULL)return;
+	ch=getc(fp);
+	while(ch!=EOF)
+	{
+	
+		if(ch=='#'){i++;k=0;ch=getc(fp);if(ch==EOF)break;if(i%6==1)j++;}
+		if(i%6==1){student[j].jiang[k]=ch;k++;m=k;if(i!=1 && k==0)student[j-1].introduction[m]='\0';}
+		if(i%6==2){if(k==0)student[j].jiang[m]='\0';student[j].ID[k]=ch;k++;m=k;}
+		if(i%6==3){if(k==0)student[j].ID[m]='\0';student[j].name[k]=ch;k++;m=k;}
+		if(i%6==4){if(k==0)student[j].name[m]='\0';student[j].gender[k]=ch;k++;m=k;}
+                if(i%6==5){if(k==0)student[j].gender[m]='\0';student[j].grade[k]=ch;k++;m=k;}
+                if(i%6==0){if(k==0)student[j].grade[m]='\0';student[j].introduction[k]=ch;k++;m=k;}
+		ch=getc(fp);
+	}
+	shuzunumber=j+1;
+	fclose(fp);
 }
 
 
@@ -142,7 +162,12 @@ void inputnew(Info student[])
 
 void histroicalquery(Info student[])
 {
-		
+	
+	}		
+
+
+
+
 }
 
 
@@ -300,12 +325,6 @@ char zhuanhuan(int n)
 	}
 	return a;
 }
-
-
- 
-
-
-
 
 
  
