@@ -162,7 +162,62 @@ void inputnew(Info student[])
 
 void histroicalquery(Info student[])
 {
-	
+	int n=1,i,x=0,y=0,z=0;
+	int b[20],c[20],d[20];
+
+	for(i=0;i<20;i++)
+	{
+		b[i]=0;
+		c[i]=0;
+		d[i]=0;
+	}
+	i=0;
+        while(i<shuzunumber)
+        {
+         	if(student[i].jiang[0]=='0'){b[x]=i;x++;}
+                if(student[i].jiang[0]=='1'){c[y]=i;y++;}
+                if(student[i].jiang[0]=='2'){d[z]=i;z++;}
+                i++;
+         }
+
+	while(n!=0)
+	{
+		printf("enter 1: information statisstics enter 2: information inquery  enter 3: clear  enter 0: exit  ");
+		scanf("%d",&n);
+		if(n==0)return;
+		if(n==1)
+		{
+			printf("there are %d people get the first prize.  there are %d people get the second prize. there are %d people get third prize\n",x,y,z);
+		}
+		if(n==2)
+		{
+			printf("the first winner : \n");
+			if(x!=0) for(i=0;i<x;i++)show(student[b[i]]);
+			else printf("nobody");
+			printf("\n");
+			printf("the second winner : \n");
+                        if(y!=0) for(i=0;i<y;i++)show(student[c[i]]);
+			else printf("nobody");
+			printf("\n");
+			printf("the third winner : \n");
+                        if(z!=0)for(i=0;i<z;i++)show(student[d[i]]);
+			else printf("nobody");
+			printf("\n");	
+	}
+		if(n==3)
+		{
+			for(i=0;i<x;i++){student[b[i]].jiang[0]='3';x=0;}
+			for(i=0;i<y;i++){student[c[i]].jiang[0]='3';y=0;}
+			for(i=0;i<z;i++){student[d[i]].jiang[0]='3';z=0;}
+		}
+
+
+	}		
+
+
+
+
+
 	}		
 
 
